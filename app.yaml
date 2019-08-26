@@ -1,0 +1,39 @@
+runtime: nodejs
+env: flex
+
+resources:
+  memory_gb: 4
+
+health_check:
+  enable_health_check : False
+# liveness_check:
+#   path: "/liveness_check"
+#   check_interval_sec: 30
+#   timeout_sec: 4
+#   failure_threshold: 2
+#   success_threshold: 2
+
+# readiness_check:
+#   path: "/readiness_check"
+#   check_interval_sec: 5
+#   timeout_sec: 4
+#   failure_threshold: 2
+#   success_threshold: 2
+#   app_start_timeout_sec: 300
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 1
+  cool_down_period_sec: 120             # time interval between auto scaling checks. It must be greater than or equal to 60 seconds.
+                                        # The default is 120 seconds
+  cpu_utilization:
+    target_utilization: 0.5             # CPU use is averaged across all running instances and is used to decide when to reduce or
+                                        # increase the number of instances (default 0.5)
+
+# handlers:
+# - url: /.*                              # regex
+#   script: ignored                       # required, but ignored
+#   secure: always                        # https
+
+env_variables:
+    JWT_SECRET : w9assignmenttoken
